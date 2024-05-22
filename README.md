@@ -31,7 +31,7 @@ follow this steps:
 
 
 # Clone the repository
-git clone https://github.com/your-username/your-repository.git
+git clone https://github.com/diegoarivera35/caspstone-back-end
 
 # Navigate to the project directory
 cd project-directory
@@ -65,4 +65,4 @@ This project is done with the support of my teacher ar Humber College north camp
 
 ## License
 
-Specify the license for your project, if applicable. You can choose from popular open-source licenses like MIT, Apache, or GNU GPL.
+GNU Affero General Public License v3.0 (AGPL-3.0)
