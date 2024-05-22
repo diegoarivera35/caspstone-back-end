@@ -1,0 +1,14 @@
+doctype html
+html
+  head
+    title Index
+  body
+    h1 Welcome to MedLinked
+    if user
+      p Logged in as #{user.email}
+      form(action="/api/users/logout" method="GET")
+        button(type="submit") Logout
+    else
+      a(href="/api/users/login") Login
+      br
+      a(href="/api/users/register") Register

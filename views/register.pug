@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title Register
+  body
+    h1 Register
+    form(action="/api/users/register" method="post")
+      div
+        label(for="email") Email:
+        input(type="email" name="email" id="email")
+      div
+        label(for="password") Password:
+        input(type="password" name="password" id="password")
+      div
+        label(for="password2") Confirm Password:
+        input(type="password" name="password2" id="password2")
+      div
+        label(for="userType") User Type:
+        select(name="userType" id="userType")
+          option(value="Patient") Patient
+          option(value="Doctor") Doctor
+          option(value="Admin") Admin
+      div
+        button(type="submit") Register
