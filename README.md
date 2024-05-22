@@ -1,5 +1,5 @@
 
-# Project Name
+# MedLinked
 
 It's a web app for medical procedures with user authentication and CRUD functionality for patients, doctors, procedures, centers, appointments, and payments.
 
