@@ -6,8 +6,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const session = require('express-session');
 const flash = require('connect-flash');
+const methodOverride = require('method-override');
 const passport = require('passport');
 const userRoutes = require('./routes/userRoutes');
+const patientRoutes = require('./routes/patientRoutes');
 
 // Load User model
 const User = require('./models/User');
@@ -42,8 +44,12 @@ app.use(passport.session());
 // Connect flash
 app.use(flash());
 
+// so the App can use PATCH
+app.use(methodOverride('_method'));
+
 // Global variables
 app.use((req, res, next) => {
+  res.locals.messages = req.flash();
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
@@ -53,8 +59,8 @@ app.use((req, res, next) => {
 
 // Database connection
 mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true
 }).then(() => {
   console.log('Connected to MongoDB');
 }).catch((err) => {
@@ -79,6 +85,7 @@ app.get('/register', (req, res) => {
 });
 
 app.use('/api/users', userRoutes);
+app.use('/', patientRoutes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {

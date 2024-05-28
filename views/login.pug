@@ -2,14 +2,29 @@ doctype html
 html
   head
     title Login
+    //- link(rel="stylesheet" href="/path/to/your/styles.css")
   body
     h1 Login
+
+    if messages.error && messages.error.length > 0
+      .alert.alert-danger
+        each error in messages.error
+          p= error
+
+    if messages.success && messages.success.length > 0
+      .alert.alert-success
+        each success in messages.success
+          p= success
+
     form(action="/api/users/login" method="post")
       div
         label(for="email") Email:
-        input(type="email" name="email" id="email")
+        input(type="email" name="email" id="email" required)
       div
         label(for="password") Password:
-        input(type="password" name="password" id="password")
+        input(type="password" name="password" id="password" required)
       div
         button(type="submit") Login
+
+    p Don't have an account? 
+      a(href="/register") Register here

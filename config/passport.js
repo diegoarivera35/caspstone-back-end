@@ -13,6 +13,12 @@ module.exports = function(passport) {
           return done(null, false, { message: 'That email is not registered' });
         }
 
+
+        // Check if the user is verified
+        if (!user.isVerified) {
+          return done(null, false, { message: 'Please verify your email first' });
+        }
+
         // Match password
         const isMatch = await bcrypt.compare(password, user.password);
         if (isMatch) {

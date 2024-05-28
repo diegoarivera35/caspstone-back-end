@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title= patient.name
+  body
+    h1= patient.firstName + ' ' + patient.lastName
+    p
+      strong Email:
+      | #{patient.email}
+    p
+      strong Phone:
+      | #{patient.phone}
+    p
+      strong Age:
+      | #{patient.age}
+    p
+      strong Address:
+      | #{patient.address}
+    p
+      strong Blood Type:
+      | #{patient.bloodType}      
+    p
+      strong Medical History:
+      | #{patient.medicalHistory}
+    a(href=`/patients/${patient._id}/edit`) Edit
+    a(href="/patients") Back

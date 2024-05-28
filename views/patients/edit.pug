@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    title Edit Patient
+  body
+    h1 Edit Patient
+    form(action=`/patients/${patient._id}?_method=PATCH` method="POST")
+      div
+        label(for="firstName") Name:
+        input(type="text" name="firstName" id="firstName" value=patient.firstName required)
+      div
+        label(for="lastName") Name:
+        input(type="text" name="lastName" id="lastName" value=patient.lastName required)
+      div      
+        label(for="email") Email:
+        input(type="email" name="email" id="email" value=patient.email required)
+      div
+        label(for="phone") Phone:
+        input(type="text" name="phone" id="phone" value=patient.phone required)
+      div
+        label(for="age") Age:
+        input(type="number" name="age" id="age" value=patient.age required)
+      div
+        label(for="address") Address:
+        input(type="text" name="address" id="address" value=patient.address required)
+      div
+        label(for="bloodType") Blood Type:
+        input(type="text" name="bloodType" id="bloodType" value=patient.bloodType required)
+      div      
+        label(for="medicalHistory") Medical History:
+        textarea(name="medicalHistory" id="medicalHistory")= patient.medicalHistory
+      div
+        button(type="submit") Update Patient
