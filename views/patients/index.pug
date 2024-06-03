@@ -4,7 +4,8 @@ html
     title Patients
   body
     h1 Patients
-    button(href="/patients/new") Add New Patient
+    Button 
+      a(href="/patients/new") Add New Patient
     table
       thead
         tr
@@ -29,7 +30,7 @@ html
             td= patient.bloodType
             td= patient.medicalHistory
             td
-              button(href=`/patients/${patient._id}`) View
-              button(href=`/patients/${patient._id}/edit`) Edit
+              a(href=`/patients/${patient._id}`) View
+              a(href=`/patients/${patient._id}/edit`) Edit
               form(action=`/patients/${patient._id}?_method=DELETE` method="POST" style="display:inline")
                 button(type="submit") Delete
