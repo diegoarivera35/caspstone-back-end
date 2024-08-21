@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title Edit User
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous')
+  body.container-fluid
+    h1.mt-4 Edit User
+    a.btn.btn-primary.mt-4(href="/users") Back 
+    .container.col-xs-12.col-sm-10.col-md-6.col-lg-4
+      form(action=`/users/${user._id}?_method=PATCH` method="POST")
+        // Email field
+        div.mb-3
+          label.form-label(for="email") Email:
+          input.form-control(type="email" name="email" id="email" value=user.email required)
+        // Password field
+        div.mb-3
+          label.form-label(for="password") New Password:
+          input.form-control(type="password" name="password" id="password" placeholder="Leave blank to keep current password")
+        // User type field
+        div.mb-3
+          label.form-label(for="userType") User Type:
+          select.form-select(name="userType" id="userType" required)
+            option(value="Patient" selected=(user.userType === 'Patient')) Patient
+            option(value="Doctor" selected=(user.userType === 'Doctor')) Doctor
+            option(value="Admin" selected=(user.userType === 'Admin')) Admin
+        // Verification status toggle
+        div.mb-3
+          label.form-label(for="isVerified") Verified Status:
+          // Conditionally setting badge class
+          if user.isVerified
+            span.badge.bg-success Verified
+            input(type="hidden" name="isVerified" value="false")
+            button.btn.btn-danger.mt-2(type="submit") Mark as Not Verified
+          else
+            span.badge.bg-danger Not Verified
+            input(type="hidden" name="isVerified" value="true") 
+            button.btn.btn-success.mt-2(type="submit") Mark as Verified
+
+        // Resend verification email button (shown only if user is not verified)
+        if !user.isVerified
+          div.mb-3
+            form(action=`/users/${user._id}/resend-verification` method="POST")
+              button.btn.btn-warning.mt-2(type="submit") Resend Verification Email
+              
+        // Submit button
+        div
+          button.btn.btn-primary.mt-4.float-end(type="submit") Update User

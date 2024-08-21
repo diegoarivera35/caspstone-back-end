@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const Patient = require('../models/Patient');
+const ensureAdmin = require('../middleware/ensureAdmin');
 
 // Get all patients
-router.get('/patients', async (req, res) => {
+router.get('/patients', ensureAdmin, async (req, res) => {
   try {
     const patients = await Patient.find();
     res.render('patients/index', { patients });
@@ -13,12 +14,12 @@ router.get('/patients', async (req, res) => {
 });
 
 // Show form to create new patient
-router.get('/patients/new', (req, res) => {
+router.get('/patients/new', ensureAdmin, (req, res) => {
   res.render('patients/new');
 });
 
 // Create a new patient
-router.post('/patients', async (req, res) => {
+router.post('/patients', ensureAdmin, async (req, res) => {
   try {
     const patient = new Patient(req.body);
     await patient.save();
@@ -29,7 +30,7 @@ router.post('/patients', async (req, res) => {
 });
 
 // Get a patient by ID
-router.get('/patients/:id', async (req, res) => {
+router.get('/patients/:id', ensureAdmin, async (req, res) => {
   try {
     const patient = await Patient.findById(req.params.id);
     if (!patient) {
@@ -42,7 +43,7 @@ router.get('/patients/:id', async (req, res) => {
 });
 
 // Show form to edit patient
-router.get('/patients/:id/edit', async (req, res) => {
+router.get('/patients/:id/edit', ensureAdmin, async (req, res) => {
   try {
     const patient = await Patient.findById(req.params.id);
     if (!patient) {
@@ -55,7 +56,7 @@ router.get('/patients/:id/edit', async (req, res) => {
 });
 
 // Update a patient
-router.patch('/patients/:id', async (req, res) => {
+router.patch('/patients/:id', ensureAdmin, async (req, res) => {
   const updates = Object.keys(req.body);
   const allowedUpdates = ['firstName','lastName', 'email', 'phone', 'age', 'address','bloodType', 'medicalHistory'];
   const isValidOperation = updates.every(update => allowedUpdates.includes(update));
@@ -80,17 +81,63 @@ router.patch('/patients/:id', async (req, res) => {
 });
 
 // Delete a patient
-router.delete('/patients/:id', async (req, res) => {
+// router.delete('/patients/:id', ensureAdmin, async (req, res) => {
+//   try {
+//     const patient = await Patient.findByIdAndDelete(req.params.id);
+
+//     if (!patient) {
+//       return res.status(404).send();
+//     }
+
+//     res.redirect('/patients');
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// });
+
+
+// Soft delete a patient or deactivate patient
+router.delete('/patients/:id', ensureAdmin, async (req, res) => {
   try {
-    const patient = await Patient.findByIdAndDelete(req.params.id);
+    const patient = await Patient.findByIdAndUpdate(req.params.id, {
+      isActive: false,
+      deactivatedAt: new Date()
+    }, { new: true });
 
     if (!patient) {
-      return res.status(404).send();
+      req.flash('error_msg', 'Patient not found');
+      return res.status(404).redirect('/patients');
     }
 
+    req.flash('success_msg', 'Patient deactivated successfully');
     res.redirect('/patients');
   } catch (error) {
-    res.status(500).send(error);
+    console.error('Error deactivating patient:', error);
+    req.flash('error_msg', 'Error deactivating patient');
+    res.status(500).redirect('/patients');
+  }
+});
+
+
+// Reactivate a patient
+router.patch('/patients/:id/reactivate', ensureAdmin, async (req, res) => {
+  try {
+    const patient = await Patient.findByIdAndUpdate(req.params.id, {
+      isActive: true,
+      deactivatedAt: null
+    }, { new: true });
+
+    if (!patient) {
+      req.flash('error_msg', 'Patient not found');
+      return res.status(404).redirect('/patients');
+    }
+
+    req.flash('success_msg', 'Patient reactivated successfully');
+    res.redirect('/patients');
+  } catch (error) {
+    console.error('Error reactivating patient:', error);
+    req.flash('error_msg', 'Error reactivating patient');
+    res.status(500).redirect('/patients');
   }
 });
 

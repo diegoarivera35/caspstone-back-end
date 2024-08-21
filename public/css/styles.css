@@ -1,0 +1,326 @@
+/* styles.css */
+
+:root {
+  /* --primary: #1e90ff; */
+  --secondary: #ffffff;
+  --primary: #FFA62B;
+  --primary-color: #000;
+  --primary-hover:#ffba59;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: var(--primary-color);
+  border-color: var(--primary);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-hover);
+  color: var(--primary-color);
+  border-color: var(--primary-hover);
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+}
+
+
+
+
+body {
+  font-family: Arial, sans-serif;
+
+  /* background-image: url(/images/background1.jpg);
+  background-size: cover; */
+  /* background: hsla(197, 14%, 57%, 1);
+  background: linear-gradient(
+    90deg,
+    hsla(197, 14%, 57%, 1) 0%,
+    hsla(192, 17%, 94%, 1) 100%
+  );
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(197, 14%, 57%, 1) 0%,
+    hsla(192, 17%, 94%, 1) 100%
+  );
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(197, 14%, 57%, 1) 0%,
+    hsla(192, 17%, 94%, 1) 100%
+  );
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#8399a2", endColorstr="#eef2f3", GradientType=1 ); */
+  background-image: linear-gradient(to top, #06888a, #40a4a6, #65c1c3, #88dfe1, #aafeff);
+  margin: 0;
+  padding: 0;
+
+background-attachment: fixed;
+
+
+
+
+}
+
+.container-fluid {
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+}
+
+.card {
+  margin: 20px 0;
+  max-width: 350px;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out,
+    opacity 0.2s ease-in-out;
+  border: 1px solid #cdcdcd;
+  cursor: pointer;
+}
+
+.indexCard {
+  /* flex: 1 1; */
+  padding: 20px;
+  text-decoration: none;
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out, opacity 0.2s ease-in-out;
+  border: 1px solid #cdcdcd;
+  cursor: pointer;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  width: 300px;
+}
+
+.indexCard:hover {
+
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 4px 4px 0 rgba(0, 0, 0, 0.05),
+    0 8px 8px 0 rgba(0, 0, 0, 0.05), 0 16px 16px 0 rgba(0, 0, 0, 0.05),
+    0 32px 32px 0 rgba(0, 0, 0, 0.05), 0 64px 64px 0 rgba(0, 0, 0, 0.05);
+  transform: translateY(-0.375rem);
+  z-index: 10;
+}
+
+
+
+.indexCardDetail {
+  flex: 1 1;
+  padding: 20px;
+  text-decoration: none;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 4px 4px 0 rgba(0, 0, 0, 0.05),
+  0 8px 8px 0 rgba(0, 0, 0, 0.05), 0 16px 16px 0 rgba(0, 0, 0, 0.05),
+  0 32px 32px 0 rgba(0, 0, 0, 0.05), 0 64px 64px 0 rgba(0, 0, 0, 0.05);
+  border: 1px solid #cdcdcd;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+}
+
+
+
+.indexTitle {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  text-transform: uppercase;
+  align-content: center;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.indexTitle h5 {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 0;
+  margin: 0;
+}
+
+.indexTitle i {
+  font-size: 20px;
+  opacity: 0.1;
+  padding: 0;
+  margin: 0;
+}
+
+.card:hover {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 4px 4px 0 rgba(0, 0, 0, 0.05),
+    0 8px 8px 0 rgba(0, 0, 0, 0.05), 0 16px 16px 0 rgba(0, 0, 0, 0.05),
+    0 32px 32px 0 rgba(0, 0, 0, 0.05), 0 64px 64px 0 rgba(0, 0, 0, 0.05);
+  transform: translateY(-0.375rem);
+  z-index: 10;
+}
+
+.card-img {
+  aspect-ratio: 1.5 / 1;
+}
+
+.card-img-overlay {    background: rgba(0, 0, 0, 0.6);
+  color: white;
+  transition: 0.2s ease-in;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-img-overlay:hover {
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
+.btn {
+  margin-top: 10px;
+}
+
+.nav {
+  gap: 10px;
+}
+
+.nav img {
+  width: 70px;
+}
+
+.nav h1, .navDashboard h1 {
+  color: #06888a;
+  padding: 0;
+  margin: 0;
+}
+
+.contenedor {
+
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  gap: 10px;
+}
+
+.contenedor a {
+  width: 100px;
+}
+
+h4 {
+  margin-top: 50px;
+  font-weight: bold;
+  color: #06888a;
+}
+
+.userLogged {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.navDashboard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navDashboard img {
+  max-width: 50px;
+  margin-right: 10px;
+}
+
+.containerOne {
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ultimaHora {
+  justify-content: flex-start;
+  margin-top: 30px;
+  width: 1130px;
+}
+
+.user {
+  border: 1px solid #c1c1c1;
+  border-radius: 8px;
+  padding: 6px 15px;
+  background-color: #eaeaea;
+}
+
+.card-title {
+  font-size: 1.5em;
+  display: flex;
+  gap: 15px;
+  align-items: unset;
+}
+
+.actionCard {
+  margin-bottom: 0;
+    align-self: flex-end;
+    gap: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/* scroll bar start */
+
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #06888a;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+/* scroll bar end */
+
+.glass {
+  
+/* From https://css.glass */
+background: rgba(255, 255, 255, 0.20);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(3px);
+-webkit-backdrop-filter: blur(3px);
+border: 1px solid rgba(255, 255, 255, 0.34);
+
+padding: 30px 20px 10px 20px;
+}
+
+.groove {
+  border-bottom: 2px groove #ffffff;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+
+.indexCard.inactive {
+  background-color: rgb(222, 222, 222); 
+  border-color: rgb(222, 222, 222);
+}
+.indexCard.inactive * {
+  color: rgb(158, 158, 158);
+} 
+
+
+.Inactive {
+  text-decoration: line-through;
+}

@@ -1,33 +1,37 @@
 doctype html
 html
   head
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous')
     title Edit Patient
-  body
+  body.container-fluid
     h1 Edit Patient
-    form(action=`/patients/${patient._id}?_method=PATCH` method="POST")
-      div
-        label(for="firstName") Name:
-        input(type="text" name="firstName" id="firstName" value=patient.firstName required)
-      div
-        label(for="lastName") Name:
-        input(type="text" name="lastName" id="lastName" value=patient.lastName required)
-      div      
-        label(for="email") Email:
-        input(type="email" name="email" id="email" value=patient.email required)
-      div
-        label(for="phone") Phone:
-        input(type="text" name="phone" id="phone" value=patient.phone required)
-      div
-        label(for="age") Age:
-        input(type="number" name="age" id="age" value=patient.age required)
-      div
-        label(for="address") Address:
-        input(type="text" name="address" id="address" value=patient.address required)
-      div
-        label(for="bloodType") Blood Type:
-        input(type="text" name="bloodType" id="bloodType" value=patient.bloodType required)
-      div      
-        label(for="medicalHistory") Medical History:
-        textarea(name="medicalHistory" id="medicalHistory")= patient.medicalHistory
-      div
-        button(type="submit") Update Patient
+    a.btn.btn-primary.mt-4(href="/patients") Back 
+    .container.col-xs-12.col.sm-10.col-md-4.col-lg-4
+      form(action=`/patients/${patient._id}?_method=PATCH` method="POST")
+        div
+          label.form-label(for="firstName") Name:
+          input.form-control(type="text" name="firstName" id="firstName" value=patient.firstName required)
+        div
+          label.form-label(for="lastName") Name:
+          input.form-control(type="text" name="lastName" id="lastName" value=patient.lastName required)
+        div      
+          label.form-label(for="email") Email:
+          input.form-control(type="email" name="email" id="email" value=patient.email required)
+        div
+          label.form-label(for="phone") Phone:
+          input.form-control(type="text" name="phone" id="phone" value=patient.phone required)
+        div
+          label.form-label(for="age") Age:
+          input.form-control(type="number" name="age" id="age" value=patient.age required)
+        div
+          label.form-label(for="address") Address:
+          input.form-control(type="text" name="address" id="address" value=patient.address required)
+        div
+          label.form-label(for="bloodType") Blood Type:
+          input.form-control(type="text" name="bloodType" id="bloodType" value=patient.bloodType required)
+        div      
+          label.form-label(for="medicalHistory") Medical History:
+          textarea.form-control(name="medicalHistory" id="medicalHistory")= patient.medicalHistory
+        div
+          button.btn.btn-primary.mt-4.float-end(type="submit") Update Patient

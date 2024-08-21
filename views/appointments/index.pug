@@ -1,0 +1,47 @@
+doctype html
+html
+  head
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous')
+    script(src='https://kit.fontawesome.com/934566fbc5.js', crossorigin='anonymous')
+    link(rel='stylesheet', href='/css/styles.css')  
+    title Appointments
+  body 
+    .container-fluid
+      div.d-flex.flex-row.justify-content-between
+        a.btn.btn-primary.m-0(href="/admin/dashboard") <i class="fa-solid fa-house"></i> Dashboard 
+        h2.text-center.m-0 Appointments
+        a.btn.btn-primary.m-0(href="/appointments/new") <i class="fa-solid fa-circle-plus"></i> Add a New Appointment
+      table.table.table-striped.mt-4
+        thead
+          tr
+            th Id
+            th Patient
+            th Doctor
+            th Procedure
+            th Center
+            th Date
+            th Time
+            th Status
+            th Payment Status
+            th Actions
+        tbody
+          each appointment in appointments
+            tr
+              td= appointment._id
+              td= appointment.patientId.firstName + ' ' + appointment.patientId.lastName
+              td= appointment.doctorId.firstName + ' ' + appointment.doctorId.lastName
+              td= appointment.medicalProcedureId.name
+              td= appointment.medicalCenterId.name
+              td= appointment.date.toDateString()
+              td= appointment.time
+              td= appointment.status
+              //- Applying background color conditionally for the appointment status
+              //- td(class=(appointment.status === 'Completed' ? 'bg-success' : (appointment.status === 'Scheduled' ? 'bg-warning' : 'bg-danger')) + ' text-light')= appointment.status
+              // Applying background color conditionally for the payment status
+              td(class=(appointment.paymentStatus === 'Completed' ? 'bg-success' : (appointment.paymentStatus === 'Pending' ? 'bg-warning text-dark' : 'bg-danger')) + ' text-light')= appointment.paymentStatus
+              td.d-flex.flex-row.gap-1
+                a.btn.btn-primary.btn-sm.mt-0(href=`/appointments/${appointment._id}`) Details
+                a.btn.btn-secondary.btn-sm.mt-0(href=`/appointments/${appointment._id}/edit`) Edit
+                form(action=`/appointments/${appointment._id}?_method=DELETE` method="POST" style="display:inline-block;")
+                  button.btn.btn-danger.btn-sm.mt-0(type="submit") Delete

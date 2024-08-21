@@ -36,8 +36,7 @@ router.post('/register', async (req, res) => {
       email,
       password,
       password2,
-      userType,
-      messages: req.flash() // Include all flash messages
+      userType
     });
   } else {
     try {
@@ -49,8 +48,7 @@ router.post('/register', async (req, res) => {
           email,
           password,
           password2,
-          userType,
-          messages: req.flash() // Include all flash messages
+          userType
         });
       } else {
         const verificationToken = crypto.randomBytes(20).toString('hex');

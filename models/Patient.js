@@ -33,7 +33,17 @@ const PatientSchema = new mongoose.Schema({
   medicalHistory: {
     type: String,
     required: false
+  },
+  isActive: {
+    type: Boolean,
+    default: true
+  },
+  deactivatedAt: {
+    type: Date,
+    default: null
   }
+}, {
+  timestamps: true // This will add createdAt and updatedAt fields
 });
 
 const Patient = mongoose.model('Patient', PatientSchema);

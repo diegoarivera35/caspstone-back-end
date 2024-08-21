@@ -1,0 +1,74 @@
+doctype html
+html
+  head
+    link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH' crossorigin='anonymous')
+    script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js' integrity='sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz' crossorigin='anonymous')
+    script(src='https://kit.fontawesome.com/934566fbc5.js', crossorigin='anonymous')
+    link(rel='stylesheet', href='/css/styles.css')
+    title Doctors
+  body
+    .container-fluid
+      div.d-flex.flex-row.justify-content-between
+        a.btn.btn-primary.m-0(href="/admin/dashboard") <i class="fa-solid fa-house"></i> Dashboard 
+        h2.text-center.m-0 DOCTORS
+        a.btn.btn-primary.m-0(href="/doctors/new") <i class="fa-solid fa-circle-plus"></i> Add New Doctor
+      .container-fluid.dashboard
+        .container-fluid.d-flex.gap-5.flex-wrap.ultimaHora
+          each doctor in doctors
+            a.indexCard.text-dark(href=`/doctors/${doctor._id}`)
+              div.d-flex.flex-column.h-100
+                div.indexTitle
+                  h5.card-title=doctor.firstName + " " + doctor.lastName
+                div.groove
+                div.d-flex.flex-column
+                  p.d-flex.flex-column 
+                    strong Email:
+                    | #{doctor.email}
+                  p.d-flex.flex-column 
+                    strong Phone:
+                    | #{doctor.phone}
+                  p.d-flex.flex-column 
+                    strong Specialization:
+                    | #{doctor.specialization}                             
+                div.actionCard Details <i class="fa-solid fa-chevron-right"></i>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      //- .container
+      //-   table.table.table-bordered
+      //-     thead.table-light
+      //-       tr
+      //-         th First Name
+      //-         th Last Name
+      //-         th Email
+      //-         th Phone
+      //-         th Specialization
+      //-         th Actions
+      //-     tbody
+      //-       each doctor in doctors
+      //-         tr
+      //-           td= doctor.firstName
+      //-           td= doctor.lastName
+      //-           td= doctor.email
+      //-           td= doctor.phone
+      //-           td= doctor.specialization
+      //-           td.d-flex.flex-column
+      //-             a.btn.btn-primary.m-1(href=`/doctors/${doctor._id}`) View
+      //-             a.btn.btn-primary.m-1(href=`/doctors/${doctor._id}/edit`) Edit
+      //-             form(action=`/doctors/${doctor._id}?_method=DELETE` method="POST" style="display:inline")
+      //-               button.btn.btn-danger.m-1(type="submit") Delete

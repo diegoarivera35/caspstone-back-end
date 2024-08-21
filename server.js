@@ -10,6 +10,13 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const userRoutes = require('./routes/userRoutes');
 const patientRoutes = require('./routes/patientRoutes');
+const doctorRoutes = require('./routes/doctorRoutes');
+const medicalProcedureRoutes = require('./routes/medicalProcedureRoutes');
+const medicalCenterRoutes = require('./routes/medicalCenterRoutes');
+const paymentRoutes = require('./routes/paymentRoutes');
+const appointmentRoutes = require('./routes/appointmentRoutes');
+const adminRoutes = require('./routes/adminRoutes');
+
 
 // Load User model
 const User = require('./models/User');
@@ -30,6 +37,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 // Express session
 app.use(session({
   secret: 'secret',
@@ -49,10 +60,10 @@ app.use(methodOverride('_method'));
 
 // Global variables
 app.use((req, res, next) => {
-  res.locals.messages = req.flash();
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error');
+  res.locals.messages = req.flash(); // This includes all flash messages
   res.locals.user = req.user || null;
   next();
 });
@@ -85,7 +96,14 @@ app.get('/register', (req, res) => {
 });
 
 app.use('/api/users', userRoutes);
+app.use('/', userRoutes);
 app.use('/', patientRoutes);
+app.use('/', doctorRoutes);
+app.use('/', medicalProcedureRoutes);
+app.use('/', medicalCenterRoutes);
+app.use('/', paymentRoutes);
+app.use('/appointments', appointmentRoutes);
+app.use('/', adminRoutes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
